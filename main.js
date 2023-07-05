@@ -1,8 +1,10 @@
 // uses strict mode so strings are not coerced, variables are not hoisted, etc... 
 'use strict';
 
+const { strict } = require('assert');
 // brings in the assert module for unit testing
 const assert = require('assert');
+const { format } = require('path');
 // brings in the readline module to access the command line
 const readline = require('readline');
 // use the readline module to print out to the command line
@@ -14,10 +16,55 @@ const rl = readline.createInterface({
 // the function that will be called by the unit test below
 const rockPaperScissors = (hand1, hand2) => {
 
-  // Write code here
-  // Use the unit test to see what is expected
+  // use the string method trim() along with the string method toLowercase(); for scrubbing input to ensure lowercase with trimmed whitespace
+  hand1 = hand1.trim()
+  hand1 = hand1.toLowerCase()
+  hand2 = hand2.trim()
+  hand2 = hand2.toLowerCase()
+  
+  // logic for tie
+  if (hand1 === hand2) {
+    return "It's a tie!"
+  }
 
+  // logic for which hand won
+  if (hand1 === 'rock' && hand2 === 'paper') {
+    return "Hand two wins!"
+  } else if (hand1 === 'rock' && hand2 === 'scissors') {
+    return "Hand one wins!"
+  } else if (hand1 === 'paper' && hand2 === 'scissors') {
+    return "Hand two wins!"
+  } else if (hand1 === 'paper' && hand2 === 'rock') {
+    return "Hand one wins!"
+  } else if (hand1 === 'scissors' && hand2 === 'rock') {
+    return "Hand two wins!"
+  } else if (hand1 === 'scissors' && hand2 === 'paper') {
+    return "Hand one wins!"
+  }
 }
+// attempt at switch statement
+// switch (hand1, hand2) {
+//   case (hand1 === 'rock' && hand2 === 'paper'):
+//     return "Hand two wins!";
+//     break;
+//   case (hand1 === 'rock' && hand2 === 'scissors'):
+//     return "Hand one wins!";
+//     break;
+//   case (hand1 === 'paper' && hand2 === 'rock'):
+//     return "Hand one wins!";    
+//     break;
+//   case (hand1 === 'paper' && hand2 === 'scissors'):
+//     return "Hand two wins!";
+//     break;
+//   case (hand1 === 'scissors' && hand2 === 'rock'):
+//     return "Hand two wins!";
+//     break;
+//   case (hand1 === 'scissors' && hand2 === 'paper'):
+//     return "Hand one wins!";
+//     break;
+//   default:
+//     return "It's a tie!"        
+// }
 
 // the first function called in the program to get an input from the user
 // to run the function use the command: node main.js
